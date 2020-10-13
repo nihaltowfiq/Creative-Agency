@@ -6,10 +6,10 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    
+
     return (
         <Container className="text-center">
-            <Link to="/home"><img className="mt-5" style={{height: '50px'}} src={logo} alt="" /></Link>
+            <Link to="/home"><img className="mt-5" style={{ height: '50px' }} src={logo} alt="" /></Link>
             <Row className="justify-content-md-center mt-3">
                 <div className="login-card mt-5">
                     <h3>Login With</h3>

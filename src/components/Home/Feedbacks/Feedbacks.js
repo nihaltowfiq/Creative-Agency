@@ -29,7 +29,7 @@ const Feedbacks = () => {
             <h1 className="text-center">Clients <span style={{ color: '#7AB259' }}>Feedbacks</span></h1>
             <div className="row d-flex justify-content-center mt-5 pt-5 mb-5 pb-5">
                 {
-                    feedbackData.map(feedback => <FeedbackDetail feedback={feedback}></FeedbackDetail>)
+                    feedbackData.map(feedback => <FeedbackDetail key={feedback.img} feedback={feedback}></FeedbackDetail>)
                 }
             </div>
         </Container>
