@@ -8,6 +8,9 @@ import NotFound from './components/NotFound/NotFound';
 import Order from './components/ClientRole/Order/Order';
 import EnrolledServices from './components/ClientRole/EnrolledServices/EnrolledServices';
 import Review from './components/ClientRole/Review/Review';
+import ServedList from './components/AdminRole/ServedList/ServedList';
+import AddService from './components/AdminRole/AddService/AddService';
+import MakeAdmin from './components/AdminRole/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -30,6 +33,15 @@ function App() {
         </Route>
         <Route path="/client/review">
           <Review></Review>
+        </Route>
+        <Route path="/admin/serviceList">
+          <ServedList></ServedList>
+        </Route>
+        <Route path="/admin/addService">
+          <AddService></AddService>
+        </Route>
+        <Route path="/admin/makeAdmin">
+          <MakeAdmin></MakeAdmin>
         </Route>
         <Route path='*'>
           <NotFound></NotFound>
