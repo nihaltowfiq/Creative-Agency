@@ -12,9 +12,9 @@ const Order = () => {
                 <Col md={3}>
                     <Link to='/home'><img style={{ height: '70px', margin: '20px 0 40px 0' }} src={logo} alt="" /></Link>
                     <div className="mt-2 ml-3">
-                        <p><Link to='/client/order'><FontAwesomeIcon icon={faShoppingCart} /> Order</Link></p>
-                        <p><Link to='/client/enrolledServices'><FontAwesomeIcon icon={faShoppingBag} /> Enrolled Services</Link></p>
-                        <p><Link to='/client/review'><FontAwesomeIcon icon={faCommentDots} /> Review</Link></p>
+                        <p><Link to='/customer/order'><FontAwesomeIcon icon={faShoppingCart} /> Order</Link></p>
+                        <p><Link to='/customer/enrolledServices'><FontAwesomeIcon icon={faShoppingBag} /> Enrolled Services</Link></p>
+                        <p><Link to='/customer/review'><FontAwesomeIcon icon={faCommentDots} /> Review</Link></p>
                     </div>
                 </Col>
                 <Col md={9}>
