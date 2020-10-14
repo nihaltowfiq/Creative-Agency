@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home/Home/Home';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
+import Order from './components/ClientRole/Order/Order';
+import EnrolledServices from './components/ClientRole/EnrolledServices/EnrolledServices';
+import Review from './components/ClientRole/Review/Review';
 
 function App() {
   return (
@@ -18,6 +21,15 @@ function App() {
         </Route>
         <Route path='/login'>
           <Login></Login>
+        </Route>
+        <Route path="/client/order">
+          <Order></Order>
+        </Route>
+        <Route path="/client/enrolledServices">
+          <EnrolledServices></EnrolledServices>
+        </Route>
+        <Route path="/client/review">
+          <Review></Review>
         </Route>
         <Route path='*'>
           <NotFound></NotFound>
