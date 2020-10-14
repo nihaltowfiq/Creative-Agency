@@ -20,6 +20,11 @@ const feedbackData = [
         name: 'Lal Mohon',
         img: customer3,
         position: 'CEO, PocketKhali'
+    },
+    {
+        name: 'Lal Mohon',
+        img: customer3,
+        position: 'CEO, PocketKhali'
     }
 ]
 

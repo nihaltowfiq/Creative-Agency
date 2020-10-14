@@ -4,7 +4,7 @@ import './FeedbackDetail.css';
 const FeedbackDetail = ({ feedback }) => {
     return (
         <div className="col-md-4">
-            <div className="feedback-card">
+            <div className="feedback-card mb-4">
                 <div className="row">
                     <div className="col-md-3">
                         <img style={{ height: '50px' }} src={feedback.img} alt="" />

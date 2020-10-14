@@ -20,6 +20,11 @@ const servicesData = [
         title: 'Web & Mobile Design',
         icon: graphic,
         detail: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, alias!'
+    },
+    {
+        title: 'Web & Mobile Design',
+        icon: graphic,
+        detail: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, alias!'
     }
 ]
 
