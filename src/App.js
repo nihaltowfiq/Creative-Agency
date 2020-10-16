@@ -43,9 +43,9 @@ function App() {
           <Route path="/customer/review">
             <Review></Review>
           </Route>
-          <Route path="/admin/serviceList">
+          <PrivateRoute path="/admin/serviceList">
             <ServedList></ServedList>
-          </Route>
+          </PrivateRoute>
           <Route path="/admin/addService">
             <AddService></AddService>
           </Route>

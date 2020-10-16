@@ -22,6 +22,7 @@ const Order = () => {
     const handleBlur = e => {
         const newOrderInfo = { ...orderInfo };
         newOrderInfo[e.target.name] = e.target.value;
+        newOrderInfo.status = 'Pending';
         setOrderInfo(newOrderInfo);
     };
     const handleFileChange = e => {
@@ -38,6 +39,7 @@ const Order = () => {
         formData.append('details', orderInfo.details);
         formData.append('price', orderInfo.price);
         formData.append('icon', service.image.img);
+        formData.append('status', orderInfo.status);
         fetch('https://dry-ocean-34765.herokuapp.com/addOrder', {
             method: 'POST',
             body: formData

@@ -16,7 +16,7 @@ const EnrolledServices = () => {
         fetch(`https://dry-ocean-34765.herokuapp.com/orders?email=${loggedInUser.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, []);
+    }, [loggedInUser.email]);
     return (
         <Container fluid>
             <Row>
@@ -44,11 +44,11 @@ const EnrolledServices = () => {
                                     <Col key={order._id} md={5}>
                                         <div className="enrolled-card mx-2 my-2">
                                             <Row>
-                                                <Col md={8}>
+                                                <Col md={7}>
                                                     <img style={{ height: "70px" }} src={`data:image/png;base64,${order.icon}`} alt="" />
                                                 </Col>
                                                 <Col>
-                                                    <Button className="mr-auto" variant="outline-danger">Pending</Button>
+                                                    <Button className="mr-auto" variant="outline-danger">{order.status}</Button>
                                                 </Col>
                                             </Row>
                                             <h3 className="py-2">{order.serviceName}</h3>
