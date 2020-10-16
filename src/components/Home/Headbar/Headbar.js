@@ -1,9 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../../App';
 import logo from '../../../images/logos/logo.png';
 
 const Headbar = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     return (
         <Navbar expand="lg">
@@ -16,7 +19,10 @@ const Headbar = () => {
                     <Nav.Link href="#home" className="nav-link mr-4">Our Team</Nav.Link>
                     <Nav.Link href="#home" className="nav-link mr-4">Contact Us</Nav.Link>
                 </Nav>
-                <Button onClick={() => history.push('/login')} variant="dark">Login</Button>
+                {
+                    !loggedInUser.email ? <Button onClick={() => history.push('/login')} variant="dark">Login</Button>
+                        : <Button onClick={() => setLoggedInUser({})} variant="dark">Logout, {loggedInUser.name}</Button>
+                }
             </Navbar.Collapse>
         </Navbar>
     );

@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faShoppingBag, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { UserContext } from '../../../App';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const ServedList = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [orders, setOrders] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5500/allOrders')
+            .then(res => res.json())
+            .then(data => setOrders(data))
+    }, []);
     return (
         <Container fluid>
             <Row>
@@ -20,35 +30,32 @@ const ServedList = () => {
                 <Col md={9}>
                     <Row className="my-4 pb-1">
                         <Col><h2>Services</h2></Col>
-                        <Col><h5 className="text-right">Nihal Towfiq</h5></Col>
+                        <Col><h5 className="text-right">{loggedInUser.name}</h5></Col>
                     </Row>
                     <Container className="mt-2 py-3" style={{ backgroundColor: "#F4F7FC", height: '600px' }}>
-                        <div className="bg-white p-4" style={{borderRadius:'10px'}}>
+                        <div className="bg-white p-4" style={{ borderRadius: '10px' }}>
                             <Table borderless responsive="sm md" hover>
                                 <thead style={{ backgroundColor: '#F4F7FC' }}>
                                     <tr>
-                                        <th style={{borderRadius:"10px 0 0 10px"}}>Name</th>
+                                        <th style={{ borderRadius: "10px 0 0 10px" }}>Name</th>
                                         <th>Email</th>
                                         <th>Service</th>
                                         <th>Project Details</th>
-                                        <th style={{borderRadius:"0 10px 10px 0"}}>Status</th>
+                                        <th style={{ borderRadius: "0 10px 10px 0" }}>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                    </tr>
-                                    <tr>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                        <td>agha</td>
-                                    </tr>
+                                    {
+                                        orders.map(order =>
+                                            <tr key={order._id}>
+                                                <td>{order.name}</td>
+                                                <td>{order.email}</td>
+                                                <td>{order.serviceName}</td>
+                                                <td>{order.details}</td>
+                                                <td>agha</td>
+                                            </tr>
+                                        )
+                                    }
                                 </tbody>
                             </Table>
                         </div>

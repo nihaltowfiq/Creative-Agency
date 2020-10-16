@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots, faShoppingBag, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { UserContext } from '../../../App';
 
 const Review = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
         <Container fluid>
             <Row>
                 <Col md={3}>
                     <Link to='/home'><img style={{ height: '70px', margin: '20px 0 40px 0' }} src={logo} alt="" /></Link>
                     <div className="mt-2 ml-3">
-                        <p><Link to='/customer/order'><FontAwesomeIcon icon={faShoppingCart} /> Order</Link></p>
+                        <p><Link to='/order'><FontAwesomeIcon icon={faShoppingCart} /> Order</Link></p>
                         <p><Link to='/customer/enrolledServices'><FontAwesomeIcon icon={faShoppingBag} /> Enrolled Services</Link></p>
                         <p><Link to='/customer/review'><FontAwesomeIcon icon={faCommentDots} /> Review</Link></p>
                     </div>
@@ -20,7 +22,7 @@ const Review = () => {
                 <Col md={9}>
                     <Row className="my-4 pb-3">
                         <Col><h2>Review</h2></Col>
-                        <Col><h5 className="text-right">Nihal Towfiq</h5></Col>
+                        <Col><h5 className="text-right">{loggedInUser.name}</h5></Col>
                     </Row>
                     <Container className="mt-2 py-3" style={{backgroundColor: "#F4F7FC", height: '600px'}}>
                         <Form className="p-5 mr-5">

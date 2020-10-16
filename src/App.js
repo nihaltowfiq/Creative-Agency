@@ -31,7 +31,10 @@ function App() {
           <Route path='/login'>
             <Login></Login>
           </Route>
-          <PrivateRoute path="/customer/order">
+          <Route path="/order/">
+            <Order></Order>
+          </Route>
+          <PrivateRoute path="/customer/order/:id">
             <Order></Order>
           </PrivateRoute>
           <Route path="/customer/enrolledServices">

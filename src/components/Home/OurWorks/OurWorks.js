@@ -31,6 +31,13 @@ const OurWorks = () => {
                             alt="Third slide"
                         />
                     </Carousel.Item>
+                    <Carousel.Item className="">
+                        <img
+                            className="d-inline w-50 h-50"
+                            src={carousel1}
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
                 </Carousel>
             </Container>
         </div>
