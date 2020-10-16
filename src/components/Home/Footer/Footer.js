@@ -10,7 +10,7 @@ const Footer = () => {
                         <h1>Let Us Handle Your Project, Professionally!</h1>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, laboriosam consequatur recusandae ipsa cupiditate id!</p>
                     </div>
-                    <div className="col-md-8 col-12 pt-5">
+                    <div id="contactUs" className="col-md-8 col-12 pt-5">
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Control size="lg" type="email" placeholder="Your Email Address" />

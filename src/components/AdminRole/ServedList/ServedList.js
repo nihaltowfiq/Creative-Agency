@@ -12,7 +12,7 @@ const ServedList = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5500/allOrders')
+        fetch('https://dry-ocean-34765.herokuapp.com/allOrders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, []);
@@ -34,7 +34,7 @@ const ServedList = () => {
                     </Row>
                     <Container className="mt-2 py-3" style={{ backgroundColor: "#F4F7FC", height: '600px' }}>
                         <div className="bg-white p-4" style={{ borderRadius: '10px' }}>
-                            <Table borderless responsive="sm md" hover>
+                            <Table className="text-center" borderless  hover>
                                 <thead style={{ backgroundColor: '#F4F7FC' }}>
                                     <tr>
                                         <th style={{ borderRadius: "10px 0 0 10px" }}>Name</th>

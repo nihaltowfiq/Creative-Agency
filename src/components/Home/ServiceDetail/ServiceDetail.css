@@ -1,5 +1,9 @@
 .service-card:hover{
     border-radius: 10px;
-    box-shadow: 5px 10px 50px;
+    box-shadow: 0 0 20px 5px lightgray;
     cursor: pointer;
+}
+.service-card:hover .icon {
+    transform: rotate(360deg) scale(1.4);
+    transition: 1s ease;
 }

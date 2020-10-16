@@ -7,23 +7,12 @@ import uber from '../../../images/logos/uber.png';
 import { Container } from 'react-bootstrap';
 
 const HeaderIcons = () => {
+    const icons = [google, airbnb, uber, slack, netflix];
     return (
-        <Container className="row text-center justify-content-center d-flex mt-5 pt-5 mb-3">
-            <div className="col-md-2 col-4 ">
-                <img style={{height:'40px'}} src={slack} alt=""  />
-            </div>
-            <div className="col-md-2 col-4">
-                <img style={{height:'40px'}} src={google} alt="" />
-            </div>
-            <div className="col-md-2 col-4">
-                <img style={{height:'40px'}} src={uber} alt="" />
-            </div>
-            <div className="col-md-2 col-4">
-                <img style={{height:'40px'}} src={netflix} alt="" />
-            </div>
-            <div className="col-md-2 col-4">
-                <img style={{height:'40px'}} src={airbnb} alt="" />
-            </div>
+        <Container className="pb-5 d-flex justify-content-around flex-wrap">
+            {
+                icons.map(icon => <img key={icon} src={icon} alt="" className="my-2 mx-4" width="130px" height="50px" />)
+            }
         </Container>
     );
 };

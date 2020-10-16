@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logos/logo.png';
-import icon from '../../../images/icons/graphic.png';
 import './EnrolledServices.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots, faShoppingBag, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -14,7 +13,7 @@ const EnrolledServices = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5500/orders?email=${loggedInUser.email}`)
+        fetch(`https://dry-ocean-34765.herokuapp.com/orders?email=${loggedInUser.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, []);
@@ -35,10 +34,14 @@ const EnrolledServices = () => {
                         <Col><h5 className="text-right">{loggedInUser.name}</h5></Col>
                     </Row>
                     <Container className="mt-2 py-3" style={{ backgroundColor: "#F4F7FC" }}>
+                        {
+                            orders.length === 0 &&
+                            <h4 className="my-4 text-center text-danger">Loading Enrolled Services....</h4>
+                        }
                         <Row>
                             {
                                 orders.map(order =>
-                                    <Col md={5}>
+                                    <Col key={order._id} md={5}>
                                         <div className="enrolled-card mx-2 my-2">
                                             <Row>
                                                 <Col md={8}>

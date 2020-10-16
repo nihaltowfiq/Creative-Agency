@@ -3,11 +3,12 @@ import { Carousel, Container } from 'react-bootstrap';
 import carousel1 from '../../../images/carousel-1.png';
 import carousel2 from '../../../images/carousel-2.png';
 import carousel3 from '../../../images/carousel-5.png';
+import carousel4 from '../../../images/carousel-4.png';
 
 const OurWorks = () => {
     return (
         <div style={{ background: '#111430' }} className="text-center pb-5 mb-5">
-            <h1 className="text-white pt-5">Here Are Some Of <span style={{ color: '#7AB259' }}>Our Work</span></h1>
+            <h1 id="ourWorks" className="text-white pt-5">Here Are Some Of <span style={{ color: '#7AB259' }}>Our Work</span></h1>
             <Container>
                 <Carousel className="p-5 ">
                     <Carousel.Item className="">
@@ -34,7 +35,7 @@ const OurWorks = () => {
                     <Carousel.Item className="">
                         <img
                             className="d-inline w-50 h-50"
-                            src={carousel1}
+                            src={carousel4}
                             alt="First slide"
                         />
                     </Carousel.Item>

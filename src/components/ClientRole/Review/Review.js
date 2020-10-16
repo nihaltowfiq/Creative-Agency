@@ -16,13 +16,17 @@ const Review = () => {
         setReviewInfo(newReviewInfo)
     };
     const handleSubmit = e => {
-        fetch('http://localhost:5500/addReview', {
+        fetch('https://dry-ocean-34765.herokuapp.com/addReview', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(reviewInfo)
         })
          .then(res => res.json())
-         .then(data => console.log(data))
+         .then(data => {
+            if (data) {
+                document.getElementById('reviewForm').innerHTML = '<h3 class="text-center text-success mt-5"><b>Review Submitted Successfully</b></h3>';
+            }
+            })
         e.preventDefault();
     };
     return (
@@ -42,7 +46,7 @@ const Review = () => {
                         <Col><h5 className="text-right">{loggedInUser.name}</h5></Col>
                     </Row>
                     <Container className="mt-2 py-3" style={{backgroundColor: "#F4F7FC", height: '600px'}}>
-                        <Form onSubmit={handleSubmit} className="p-5 mr-5">
+                        <Form id="reviewForm" onSubmit={handleSubmit} className="p-5 mr-5">
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Control onBlur={handleBlur} name="name" size="lg" type="text" placeholder="Your Name" required />
                             </Form.Group>

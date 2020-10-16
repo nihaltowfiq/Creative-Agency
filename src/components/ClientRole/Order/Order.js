@@ -11,7 +11,7 @@ const Order = () => {
     const { id } = useParams();
     const [servicesData, setServicesData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5500/services')
+        fetch('https://dry-ocean-34765.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServicesData(data))
     }, []);
@@ -38,17 +38,15 @@ const Order = () => {
         formData.append('details', orderInfo.details);
         formData.append('price', orderInfo.price);
         formData.append('icon', service.image.img);
-        console.log(orderInfo);
-        fetch('http://localhost:5500/addOrder', {
+        fetch('https://dry-ocean-34765.herokuapp.com/addOrder', {
             method: 'POST',
             body: formData
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error(error)
+                if (data === false) {
+                    document.getElementById('orderForm').innerHTML = '<h3 class="text-center text-success mt-5"><b>Orderd Successfully</b></h3>';
+                }
             })
         e.preventDefault();
     };
@@ -69,27 +67,27 @@ const Order = () => {
                         <Col><h5 className="text-right">{loggedInUser.name}</h5></Col>
                     </Row>
                     <Container className="mt-2 py-3" style={{ backgroundColor: "#F4F7FC", height: '600px' }}>
-                        <Form onSubmit={handleSubmit} className="p-5 mr-5">
-                            <Form.Group controlId="formBasicEmail">
+                        <Form id="orderForm" onSubmit={handleSubmit} className="p-5 mr-5">
+                            <Form.Group>
                                 <Form.Control onBlur={handleBlur} name="name" size="lg" type="text" defaultValue={loggedInUser.name} placeholder="Your Name / Company's Name" required />
                             </Form.Group>
 
-                            <Form.Group controlId="formBasicName">
-                                <Form.Control onBlur={handleBlur} name="email" size="lg" type="email" value={loggedInUser.email} placeholder="Your Email Address" required />
+                            <Form.Group>
+                                <Form.Control onBlur={handleBlur} name="email" size="lg" type="email" value={loggedInUser.email} placeholder="Your Email Address" readOnly />
                             </Form.Group>
 
-                            <Form.Group controlId="formBasicName">
-                                <Form.Control onBlur={handleBlur} name="serviceName" size="lg" type="text" value={service.title} placeholder="Service" required />
+                            <Form.Group>
+                                <Form.Control onBlur={handleBlur} name="serviceName" size="lg" type="text" defaultValue={service.title} placeholder="Service" required />
                             </Form.Group>
 
-                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Group>
                                 <Form.Control onBlur={handleBlur} name="details" type="text" size="lg" as="textarea" rows="3" placeholder="Project Details" required />
                             </Form.Group>
 
                             <Row>
                                 <Col>
                                     <Form.Group>
-                                        <Form.Control onBlur={handleBlur} name="price" size="lg" type="text" placeholder="Price" required />
+                                        <Form.Control onBlur={handleBlur} name="price" size="lg" type="number" placeholder="Price" required />
                                     </Form.Group>
                                 </Col>
                                 <Col>
@@ -106,7 +104,7 @@ const Order = () => {
                                 </Col>
                             </Row>
 
-                            <Button variant="dark" type="submit" size="lg" >Submit</Button>
+                            <Button variant="dark" type="submit" size="lg" >Order</Button>
                         </Form>
                     </Container>
                 </Col>
