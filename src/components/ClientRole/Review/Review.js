@@ -5,9 +5,26 @@ import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots, faShoppingBag, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { UserContext } from '../../../App';
+import { useState } from 'react';
 
 const Review = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [reviewInfo, setReviewInfo] = useState({});
+    const handleBlur = e => {
+        const newReviewInfo = {...reviewInfo, img: loggedInUser.img};
+        newReviewInfo[e.target.name] = e.target.value;
+        setReviewInfo(newReviewInfo)
+    };
+    const handleSubmit = e => {
+        fetch('http://localhost:5500/addReview', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(reviewInfo)
+        })
+         .then(res => res.json())
+         .then(data => console.log(data))
+        e.preventDefault();
+    };
     return (
         <Container fluid>
             <Row>
@@ -25,18 +42,19 @@ const Review = () => {
                         <Col><h5 className="text-right">{loggedInUser.name}</h5></Col>
                     </Row>
                     <Container className="mt-2 py-3" style={{backgroundColor: "#F4F7FC", height: '600px'}}>
-                        <Form className="p-5 mr-5">
+                        <Form onSubmit={handleSubmit} className="p-5 mr-5">
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Control size="lg" type="email" placeholder="Your Name" />
+                                <Form.Control onBlur={handleBlur} name="name" size="lg" type="text" placeholder="Your Name" required />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicName">
-                                <Form.Control size="lg" type="text" placeholder="Company's Name, Designation" />
+                                <Form.Control onBlur={handleBlur} name="companyName" size="lg" type="text" placeholder="Designation, Company's Name" required />
                             </Form.Group>
+
                             <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Control size="lg" as="textarea" rows="3" placeholder="Description" />
+                                <Form.Control onBlur={handleBlur} name="description" type="text" size="lg" as="textarea" rows="3" placeholder="Description" required />
                             </Form.Group>
-                            <Button variant="dark" type="submit" size="lg" >Send</Button>
+                            <Button variant="dark" type="submit" size="lg" >Submit</Button>
                         </Form>
                     </Container>
                 </Col>

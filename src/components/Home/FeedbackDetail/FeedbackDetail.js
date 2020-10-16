@@ -7,14 +7,14 @@ const FeedbackDetail = ({ feedback }) => {
             <div className="feedback-card mb-4">
                 <div className="row">
                     <div className="col-md-3">
-                        <img style={{ height: '50px' }} src={feedback.img} alt="" />
+                        <img style={{ height: '50px', borderRadius:"50%" }} src={feedback.img} alt="" />
                     </div>
                     <div className="col-md-7">
                         <h5>{feedback.name}</h5>
-                        <small>{feedback.position}</small>
+                        <small>{feedback.companyName}</small>
                     </div>
                 </div>
-                <p className="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci autem molestiae fugiat dignissimos est possimus.</p>
+                <p className="pt-3">{feedback.description}</p>
             </div>
         </div>
     );
