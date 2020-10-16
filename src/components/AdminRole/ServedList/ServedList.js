@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +18,7 @@ const ServedList = () => {
             .then(data => setOrders(data))
     }, []);
 
-    function statusChange(id, e) {
+    const statusChange = (id, e) => {
         const updatedOrder = { status: e.target.value };
         document.getElementById('update').innerText = 'Updateding Changes';
 
