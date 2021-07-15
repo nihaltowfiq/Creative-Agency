@@ -7,10 +7,15 @@ import carousel4 from '../../../images/carousel-4.png';
 
 const OurWorks = () => {
     return (
-        <div style={{ background: '#111430' }} className="text-center pb-5 mb-5">
-            <h1 id="ourWorks" className="text-white pt-5">Here Are Some Of <span style={{ color: '#7AB259' }}>Our Work</span></h1>
+        <div
+            style={{ background: '#111430' }}
+            className="text-center pb-5 mb-5">
+            <h1 id="ourWorks" className="text-white pt-5">
+                Here Are Some Of{' '}
+                <span style={{ color: '#7AB259' }}>Our Work</span>
+            </h1>
             <Container>
-                <Carousel className="p-5 ">
+                <Carousel className="p-5">
                     <Carousel.Item className="">
                         <img
                             className="d-inline w-50 h-50"
