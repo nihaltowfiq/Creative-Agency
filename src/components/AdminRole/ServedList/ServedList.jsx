@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus,
@@ -46,7 +45,7 @@ const ServedList = () => {
                     <Link to="/home">
                         <img
                             style={{ height: '70px', margin: '20px 0 40px 0' }}
-                            src={logo}
+                            src="/images/logos/logo.png"
                             alt=""
                         />
                     </Link>
@@ -80,14 +79,17 @@ const ServedList = () => {
                     </Row>
                     <Container
                         className="mt-2 py-3"
-                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}>
+                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+                    >
                         <div
                             className="bg-white p-4"
-                            style={{ borderRadius: '10px' }}>
+                            style={{ borderRadius: '10px' }}
+                        >
                             <p
                                 className="text-center text-success"
                                 style={{ fontSize: '1.5em' }}
-                                id="update"></p>
+                                id="update"
+                            ></p>
                             {orders.length === 0 && (
                                 <h4 className="my-4 text-center text-danger">
                                     Loading Orders....
@@ -101,7 +103,8 @@ const ServedList = () => {
                                             style={{
                                                 borderRadius: '10px 0 0 10px',
                                             }}
-                                            scope="col">
+                                            scope="col"
+                                        >
                                             Name
                                         </th>
                                         <th scope="col">Email</th>
@@ -111,7 +114,8 @@ const ServedList = () => {
                                             style={{
                                                 borderRadius: '0 10px 10px 0',
                                             }}
-                                            scope="col">
+                                            scope="col"
+                                        >
                                             Status
                                         </th>
                                     </tr>
@@ -124,7 +128,8 @@ const ServedList = () => {
                                             <td>{order.serviceName}</td>
                                             <td
                                                 className="text-left"
-                                                width="300px">
+                                                width="300px"
+                                            >
                                                 {order.details}
                                             </td>
                                             <td>
@@ -136,7 +141,8 @@ const ServedList = () => {
                                                             e
                                                         )
                                                     }
-                                                    name="status">
+                                                    name="status"
+                                                >
                                                     {statuses.map((option) => (
                                                         <option
                                                             key={option}
@@ -144,7 +150,8 @@ const ServedList = () => {
                                                             selected={
                                                                 option ===
                                                                 order.status
-                                                            }>
+                                                            }
+                                                        >
                                                             {option}
                                                         </option>
                                                     ))}

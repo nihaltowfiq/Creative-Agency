@@ -25,7 +25,7 @@ function App() {
                     <Route path="/order/" component={Order} />
                     <PrivateRoute
                         path="/customer/order/:id"
-                        component={Order}
+                        render={() => <Order />}
                     />
                     <Route
                         path="/customer/enrolledServices"

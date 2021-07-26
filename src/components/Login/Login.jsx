@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
-import logo from '../../images/logos/logo.png';
-import googleIcon from '../../images/icons/google.png';
 import './Login.css';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './firebase.config';
-import { useContext } from 'react';
 import { UserContext } from '../../App';
 
 const Login = () => {
@@ -46,7 +43,7 @@ const Login = () => {
                 <img
                     className="mt-5"
                     style={{ height: '50px' }}
-                    src={logo}
+                    src="/images/logos/logo.png"
                     alt=""
                 />
             </Link>
@@ -54,13 +51,15 @@ const Login = () => {
                 <div className="login-card mt-5">
                     <h3>Login With</h3>
                     <Button onClick={handleGoogle} variant="light">
-                        <img src={googleIcon} alt="" /> Continue with Google
+                        <img src="/images/icons/google.png" alt="" /> Continue
+                        with Google
                     </Button>
                     <p>
                         Don't have an account?{' '}
                         <a
                             href="https://accounts.google.com/signup?hl=en"
-                            target="blank">
+                            target="blank"
+                        >
                             Create an account.
                         </a>
                     </p>

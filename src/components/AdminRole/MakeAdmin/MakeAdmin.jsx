@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus,
@@ -42,8 +41,8 @@ const MakeAdmin = () => {
                     <Link to="/home">
                         <img
                             style={{ height: '70px', margin: '20px 0 40px 0' }}
-                            src={logo}
-                            alt=""
+                            src="/images/logos/logo.png"
+                            alt="icon"
                         />
                     </Link>
                     <div className="mt-2 ml-3">
@@ -76,13 +75,15 @@ const MakeAdmin = () => {
                     </Row>
                     <Container
                         className="mt-2 py-3"
-                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}>
+                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+                    >
                         <div className="mt-3 ml-3">
                             <Form
                                 id="makeAdminForm"
                                 onSubmit={handleSubmit}
                                 className="p-5 mr-5 bg-white"
-                                style={{ borderRadius: '10px' }}>
+                                style={{ borderRadius: '10px' }}
+                            >
                                 <Form.Label>
                                     <b>Email</b>
                                 </Form.Label>
@@ -101,7 +102,8 @@ const MakeAdmin = () => {
                                         <Button
                                             variant="success"
                                             type="submit"
-                                            size="lg">
+                                            size="lg"
+                                        >
                                             Submit
                                         </Button>
                                     </Form.Group>

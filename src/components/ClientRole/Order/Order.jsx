@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import logo from '../../../images/logos/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCommentDots,
@@ -63,7 +62,7 @@ const Order = () => {
                     <Link to="/home">
                         <img
                             style={{ height: '70px', margin: '20px 0 40px 0' }}
-                            src={logo}
+                            src="/images/logos/logo.png"
                             alt=""
                         />
                     </Link>
@@ -97,11 +96,13 @@ const Order = () => {
                     </Row>
                     <Container
                         className="mt-2 py-3"
-                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}>
+                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+                    >
                         <Form
                             id="orderForm"
                             onSubmit={handleSubmit}
-                            className="p-5 mr-5">
+                            className="p-5 mr-5"
+                        >
                             <Form.Group>
                                 <Form.Control
                                     onBlur={handleBlur}

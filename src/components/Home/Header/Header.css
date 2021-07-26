@@ -5,7 +5,7 @@
 }
 .header-wrapper::before {
     content: ' ';
-    background-image: url('../../../images/header-bg.png');
+    background-image: url('../../../assets/images/header-bg.png');
     position: absolute;
     height: 650px;
     top: 0;

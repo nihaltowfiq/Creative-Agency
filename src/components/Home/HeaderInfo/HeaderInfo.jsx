@@ -1,5 +1,4 @@
 import React from 'react';
-import headerFrame from '../../../images/logos/Frame.png';
 
 const HeaderInfo = () => {
     return (
@@ -20,7 +19,11 @@ const HeaderInfo = () => {
                     </a>
                 </div>
                 <div className="col-md-7 col-12">
-                    <img className="img-fluid" src={headerFrame} alt="" />
+                    <img
+                        className="img-fluid"
+                        src="/images/logos/Frame.png"
+                        alt="img"
+                    />
                 </div>
             </div>
         </section>

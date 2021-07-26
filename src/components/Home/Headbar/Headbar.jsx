@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../../App';
-import logo from '../../../images/logos/logo.png';
 
 const Headbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -14,7 +13,7 @@ const Headbar = () => {
                 <img
                     onClick={() => history.push('/')}
                     style={{ height: '40px' }}
-                    src={logo}
+                    src="/images/logos/logo.png"
                     alt=""
                 />
             </Navbar.Brand>
@@ -24,7 +23,8 @@ const Headbar = () => {
                     <Nav.Link
                         href=""
                         onClick={() => history.push('/home')}
-                        className="nav-link mr-4">
+                        className="nav-link mr-4"
+                    >
                         Home
                     </Nav.Link>
                     <Nav.Link href="#ourWorks" className="nav-link mr-4">
@@ -36,14 +36,16 @@ const Headbar = () => {
                     <Nav.Link
                         href=""
                         onClick={() => history.push('/admin/serviceList')}
-                        className="nav-link mr-4">
+                        className="nav-link mr-4"
+                    >
                         Admin Panel
                     </Nav.Link>
                 </Nav>
                 {!loggedInUser.email ? (
                     <Button
                         onClick={() => history.push('/login')}
-                        variant="dark">
+                        variant="dark"
+                    >
                         Login
                     </Button>
                 ) : (

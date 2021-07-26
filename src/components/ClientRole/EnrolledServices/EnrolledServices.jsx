@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../../../images/logos/logo.png';
 import './EnrolledServices.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -30,7 +29,7 @@ const EnrolledServices = () => {
                     <Link to="/home">
                         <img
                             style={{ height: '70px', margin: '20px 0 40px 0' }}
-                            src={logo}
+                            src="/images/logos/logo.png"
                             alt=""
                         />
                     </Link>
@@ -64,7 +63,8 @@ const EnrolledServices = () => {
                     </Row>
                     <Container
                         className="mt-2 py-3"
-                        style={{ backgroundColor: '#F4F7FC' }}>
+                        style={{ backgroundColor: '#F4F7FC' }}
+                    >
                         {orders.length === 0 && (
                             <h4 className="my-4 text-center text-danger">
                                 Loading Enrolled Services....
@@ -85,7 +85,8 @@ const EnrolledServices = () => {
                                             <Col>
                                                 <Button
                                                     className="mr-auto"
-                                                    variant="outline-danger">
+                                                    variant="outline-danger"
+                                                >
                                                     {order.status}
                                                 </Button>
                                             </Col>
