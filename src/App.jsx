@@ -23,19 +23,16 @@ function App() {
                     <Route path="/home" component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/order/" component={Order} />
-                    <PrivateRoute
-                        path="/customer/order/:id"
-                        render={() => <Order />}
-                    />
-                    <Route
-                        path="/customer/enrolledServices"
-                        component={EnrolledServices}
-                    />
+                    <PrivateRoute path="/customer/order/:id">
+                        <Order />
+                    </PrivateRoute>
+                    <Route path="/customer/enrolledServices">
+                        <EnrolledServices />
+                    </Route>
                     <Route path="/customer/review" component={Review} />
-                    <PrivateRoute
-                        path="/admin/serviceList"
-                        component={ServedList}
-                    />
+                    <PrivateRoute path="/admin/serviceList">
+                        <ServedList />
+                    </PrivateRoute>
                     <Route path="/admin/addService" component={AddService} />
                     <Route path="/admin/makeAdmin" component={MakeAdmin} />
                     <Route path="*" component={NotFound} />

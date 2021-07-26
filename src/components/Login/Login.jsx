@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+/* eslint-disable no-unused-vars */
+import { useContext } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import './Login.css';
 import { Link, useHistory, useLocation } from 'react-router-dom';
@@ -8,7 +9,7 @@ import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 
 const Login = () => {
-    const [setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: '/' } };
