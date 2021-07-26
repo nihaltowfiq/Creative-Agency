@@ -1,16 +1,15 @@
-.header-wrapper{
+.header-wrapper {
     height: 800px;
     width: 100%;
     position: relative;
 }
-.header-wrapper::before{
+.header-wrapper::before {
     content: ' ';
     background-image: url('../../../images/header-bg.png');
+    position: absolute;
     height: 650px;
     top: 0;
     left: 0;
-    content: ' ';
-    position: absolute;
     width: 100%;
     z-index: -2;
     background-position: top left;
