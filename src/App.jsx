@@ -1,28 +1,33 @@
-import React, { useState, createContext } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './components/Home/Home/Home';
-import Login from './components/Login/Login';
-import NotFound from './components/NotFound/NotFound';
-import Order from './components/ClientRole/Order/Order';
-import EnrolledServices from './components/ClientRole/EnrolledServices/EnrolledServices';
-import Review from './components/ClientRole/Review/Review';
-import ServedList from './components/AdminRole/ServedList/ServedList';
-import AddService from './components/AdminRole/AddService/AddService';
-import MakeAdmin from './components/AdminRole/MakeAdmin/MakeAdmin';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import { useState, createContext } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
+import { Home } from './pages';
+import { NotFound, PrivateRoute } from './components/others';
+import { Login } from './components/templates';
+import Order from './components/ClientRole/Order';
+import EnrolledServices from './components/ClientRole/EnrolledServices';
+import Review from './components/ClientRole/Review';
+import ServedList from './components/AdminRole/ServedList';
+import AddService from './components/AdminRole/AddService';
+import MakeAdmin from './components/AdminRole/MakeAdmin';
 
 export const UserContext = createContext();
 
 function App() {
     const [loggedInUser, setLoggedInUser] = useState({});
+
     return (
         <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
             <Router>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/home" component={Home} />
+                    <Redirect from="/home" to="/" />
                     <Route path="/login" component={Login} />
-                    <Route path="/order/" component={Order} />
+                    <Route path="/order" component={Order} />
                     <PrivateRoute path="/customer/order/:id">
                         <Order />
                     </PrivateRoute>
