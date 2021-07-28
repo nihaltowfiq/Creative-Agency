@@ -123,7 +123,7 @@ const Order = () => {
                                     name="email"
                                     size="lg"
                                     type="email"
-                                    value={loggedInUser.email}
+                                    defaultValue={loggedInUser.email}
                                     placeholder="Your Email Address"
                                     readOnly
                                 />
