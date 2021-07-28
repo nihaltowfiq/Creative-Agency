@@ -12,7 +12,9 @@ import { UserContext } from '../../App';
 const ServedList = () => {
     const [loggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
+
     const statuses = ['Pending', 'OnGoing', 'Done'];
+
     useEffect(() => {
         fetch('https://dry-ocean-34765.herokuapp.com/allOrders')
             .then((res) => res.json())
@@ -21,7 +23,7 @@ const ServedList = () => {
 
     const statusChange = (id, e) => {
         const updatedOrder = { status: e.target.value };
-        document.getElementById('update').innerText = 'Updateding Changes';
+        document.getElementById('update').innerText = 'Updating Changes';
 
         fetch(`https://dry-ocean-34765.herokuapp.com/update/${id}`, {
             method: 'PATCH',

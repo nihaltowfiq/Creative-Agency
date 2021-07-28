@@ -7,6 +7,11 @@ export const Headbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
 
+    const handleLogOut = () => {
+        localStorage.removeItem('user');
+        setLoggedInUser({});
+    };
+
     return (
         <Navbar expand="lg">
             <Navbar.Brand href="">
@@ -49,7 +54,7 @@ export const Headbar = () => {
                         Login
                     </Button>
                 ) : (
-                    <Button onClick={() => setLoggedInUser({})} variant="dark">
+                    <Button onClick={handleLogOut} variant="dark">
                         Logout, {loggedInUser.name}
                     </Button>
                 )}

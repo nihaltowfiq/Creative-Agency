@@ -23,13 +23,12 @@ export const Login = () => {
             .auth()
             .signInWithPopup(provider)
             .then((result) => {
-                const { displayName, email, photoURL } = result.user;
-                const signedInUser = {
-                    name: displayName,
-                    email,
-                    img: photoURL,
-                };
-                setLoggedInUser(signedInUser);
+                const { displayName: name, email, photoURL: img } = result.user;
+                setLoggedInUser({ name, email, img });
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify({ name, email, img })
+                );
                 history.replace(from);
             })
             .catch((error) => {

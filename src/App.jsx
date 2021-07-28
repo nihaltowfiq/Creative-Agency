@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,6 +19,11 @@ export const UserContext = createContext();
 
 function App() {
     const [loggedInUser, setLoggedInUser] = useState({});
+
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        if (user) setLoggedInUser(JSON.parse(user));
+    }, []);
 
     return (
         <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>

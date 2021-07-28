@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { UserContext } from '../../App';
 
 export const PrivateRoute = ({ children, ...rest }) => {
-    const [loggedInUser] = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('user'));
+
     return (
         <Route
             {...rest}
             render={({ location }) =>
-                loggedInUser.email ? (
+                user?.email ? (
                     children
                 ) : (
                     <Redirect
