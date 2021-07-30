@@ -7,9 +7,9 @@ import {
     faShoppingBag,
     faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../App';
+import { UserContext } from '../../../App';
 
-const MakeAdmin = () => {
+export const MakeAdmin = () => {
     const [loggedInUser] = useContext(UserContext);
     const [admin, setAdmin] = useState({});
     const handleBlur = (e) => {
@@ -32,6 +32,7 @@ const MakeAdmin = () => {
                 }
             });
     };
+
     return (
         <Container fluid>
             <Row>
@@ -45,18 +46,18 @@ const MakeAdmin = () => {
                     </Link>
                     <div className="mt-2 ml-3">
                         <p>
-                            <Link to="/admin/serviceList">
+                            <Link to="/admin/service-list">
                                 <FontAwesomeIcon icon={faShoppingBag} /> Service
                                 List
                             </Link>
                         </p>
                         <p>
-                            <Link to="/admin/addService">
+                            <Link to="/admin/add-service">
                                 <FontAwesomeIcon icon={faPlus} /> Add Service
                             </Link>
                         </p>
                         <p>
-                            <Link to="/admin/makeAdmin">
+                            <Link to="/admin/make-admin">
                                 <FontAwesomeIcon icon={faUserPlus} /> Make Admin
                             </Link>
                         </p>
@@ -114,5 +115,3 @@ const MakeAdmin = () => {
         </Container>
     );
 };
-
-export default MakeAdmin;

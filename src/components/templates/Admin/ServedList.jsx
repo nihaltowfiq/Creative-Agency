@@ -7,9 +7,9 @@ import {
     faShoppingBag,
     faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../App';
+import { UserContext } from '../../../App';
 
-const ServedList = () => {
+export const ServedList = () => {
     const [loggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
 
@@ -38,6 +38,7 @@ const ServedList = () => {
                 }
             });
     };
+
     return (
         <Container fluid>
             <Row>
@@ -51,18 +52,18 @@ const ServedList = () => {
                     </Link>
                     <div className="mt-2 ml-3">
                         <p>
-                            <Link to="/admin/serviceList">
+                            <Link to="/admin/service-list">
                                 <FontAwesomeIcon icon={faShoppingBag} /> Service
                                 List
                             </Link>
                         </p>
                         <p>
-                            <Link to="/admin/addService">
+                            <Link to="/admin/add-service">
                                 <FontAwesomeIcon icon={faPlus} /> Add Service
                             </Link>
                         </p>
                         <p>
-                            <Link to="/admin/makeAdmin">
+                            <Link to="/admin/make-admin">
                                 <FontAwesomeIcon icon={faUserPlus} /> Make Admin
                             </Link>
                         </p>
@@ -103,18 +104,16 @@ const ServedList = () => {
                                             style={{
                                                 borderRadius: '10px 0 0 10px',
                                             }}
-                                            scope="col"
                                         >
                                             Name
                                         </th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Service</th>
-                                        <th scope="col">Details</th>
+                                        <th>Email</th>
+                                        <th>Service</th>
+                                        <th>Details</th>
                                         <th
                                             style={{
                                                 borderRadius: '0 10px 10px 0',
                                             }}
-                                            scope="col"
                                         >
                                             Status
                                         </th>
@@ -124,15 +123,17 @@ const ServedList = () => {
                                     {orders.map((order) => (
                                         <tr key={order._id}>
                                             <td>{order.name}</td>
-                                            <td>{order.email}</td>
+                                            <td style={{ width: '200px' }}>
+                                                {order.email}
+                                            </td>
                                             <td>{order.serviceName}</td>
                                             <td
                                                 className="text-left"
-                                                width="300px"
+                                                style={{ width: '350px' }}
                                             >
                                                 {order.details}
                                             </td>
-                                            <td>
+                                            <td style={{ width: '150px' }}>
                                                 <select
                                                     className="form-control"
                                                     onChange={(e) =>
@@ -168,5 +169,3 @@ const ServedList = () => {
         </Container>
     );
 };
-
-export default ServedList;

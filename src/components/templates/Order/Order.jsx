@@ -7,9 +7,9 @@ import {
     faShoppingBag,
     faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../App';
+import { UserContext } from '../../../App';
 
-const Order = () => {
+export const Order = () => {
     const [servicesData, setServicesData] = useState([]);
     const [orderInfo, setOrderInfo] = useState({});
     const [orderFile, setOrderFile] = useState(null);
@@ -35,6 +35,8 @@ const Order = () => {
         setOrderFile(newOrderFile);
     };
     const handleSubmit = (e) => {
+        e.preventDefault();
+
         const formData = new FormData();
         formData.append('file', orderFile);
         formData.append('name', orderInfo.name || loggedInUser.name);
@@ -44,6 +46,7 @@ const Order = () => {
         formData.append('price', orderInfo.price);
         formData.append('icon', service.image.img);
         formData.append('status', orderInfo.status);
+
         fetch('https://dry-ocean-34765.herokuapp.com/addOrder', {
             method: 'POST',
             body: formData,
@@ -55,8 +58,8 @@ const Order = () => {
                         '<h3 class="text-center text-success mt-5"><b>Orderd Successfully</b></h3>';
                 }
             });
-        e.preventDefault();
     };
+
     return (
         <Container fluid>
             <Row>
@@ -75,7 +78,7 @@ const Order = () => {
                             </Link>
                         </p>
                         <p>
-                            <Link to="/customer/enrolledServices">
+                            <Link to="/customer/enrolled-services">
                                 <FontAwesomeIcon icon={faShoppingBag} />{' '}
                                 Enrolled Services
                             </Link>
@@ -190,5 +193,3 @@ const Order = () => {
         </Container>
     );
 };
-
-export default Order;

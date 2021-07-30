@@ -5,15 +5,18 @@ import {
     Route,
     Redirect,
 } from 'react-router-dom';
-import { Home } from './pages';
-import { NotFound, PrivateRoute } from './components/others';
-import { Login } from './components/templates';
-import Order from './components/ClientRole/Order';
-import EnrolledServices from './components/ClientRole/EnrolledServices';
-import Review from './components/ClientRole/Review';
-import ServedList from './components/AdminRole/ServedList';
-import AddService from './components/AdminRole/AddService';
-import MakeAdmin from './components/AdminRole/MakeAdmin';
+import {
+    Login,
+    AddService,
+    EnrolledServices,
+    Home,
+    MakeAdmin,
+    Order,
+    Review,
+    ServedList,
+    NotFound,
+} from './pages';
+import { PrivateRoute } from './components/others';
 
 export const UserContext = createContext();
 
@@ -36,15 +39,15 @@ function App() {
                     <PrivateRoute path="/customer/order/:id">
                         <Order />
                     </PrivateRoute>
-                    <Route path="/customer/enrolledServices">
+                    <Route path="/customer/enrolled-services">
                         <EnrolledServices />
                     </Route>
                     <Route path="/customer/review" component={Review} />
-                    <PrivateRoute path="/admin/serviceList">
+                    <PrivateRoute path="/admin/service-list">
                         <ServedList />
                     </PrivateRoute>
-                    <Route path="/admin/addService" component={AddService} />
-                    <Route path="/admin/makeAdmin" component={MakeAdmin} />
+                    <Route path="/admin/add-service" component={AddService} />
+                    <Route path="/admin/make-admin" component={MakeAdmin} />
                     <Route path="*" component={NotFound} />
                 </Switch>
             </Router>

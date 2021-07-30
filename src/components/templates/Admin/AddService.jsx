@@ -7,9 +7,9 @@ import {
     faShoppingBag,
     faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../App';
+import { UserContext } from '../../../App';
 
-const AddService = () => {
+export const AddService = () => {
     const [loggedInUser] = useContext(UserContext);
     const [serviceInfo, setServiceInfo] = useState({});
     const [serviceFile, setServiceFile] = useState(null);
@@ -41,6 +41,7 @@ const AddService = () => {
             });
         e.preventDefault();
     };
+
     return (
         <Container fluid>
             <Row>
@@ -54,18 +55,18 @@ const AddService = () => {
                     </Link>
                     <div className="mt-2 ml-3">
                         <p>
-                            <Link to="/admin/serviceList">
+                            <Link to="/admin/service-list">
                                 <FontAwesomeIcon icon={faShoppingBag} /> Service
                                 List
                             </Link>
                         </p>
                         <p>
-                            <Link to="/admin/addService">
+                            <Link to="/admin/add-service">
                                 <FontAwesomeIcon icon={faPlus} /> Add Service
                             </Link>
                         </p>
                         <p>
-                            <Link to="/admin/makeAdmin">
+                            <Link to="/admin/make-admin">
                                 <FontAwesomeIcon icon={faUserPlus} /> Make Admin
                             </Link>
                         </p>
@@ -151,5 +152,3 @@ const AddService = () => {
         </Container>
     );
 };
-
-export default AddService;

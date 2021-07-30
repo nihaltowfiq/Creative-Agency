@@ -7,9 +7,9 @@ import {
     faShoppingBag,
     faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../App';
+import { UserContext } from '../../../App';
 
-const Review = () => {
+export const Review = () => {
     const [loggedInUser] = useContext(UserContext);
     const [reviewInfo, setReviewInfo] = useState({});
     const handleBlur = (e) => {
@@ -32,6 +32,7 @@ const Review = () => {
             });
         e.preventDefault();
     };
+
     return (
         <Container fluid>
             <Row>
@@ -50,7 +51,7 @@ const Review = () => {
                             </Link>
                         </p>
                         <p>
-                            <Link to="/customer/enrolledServices">
+                            <Link to="/customer/enrolled-services">
                                 <FontAwesomeIcon icon={faShoppingBag} />{' '}
                                 Enrolled Services
                             </Link>
@@ -124,5 +125,3 @@ const Review = () => {
         </Container>
     );
 };
-
-export default Review;

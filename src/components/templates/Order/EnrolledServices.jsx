@@ -8,11 +8,12 @@ import {
     faShoppingBag,
     faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../App';
+import { UserContext } from '../../../App';
 
-const EnrolledServices = () => {
+export const EnrolledServices = () => {
     const [loggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
+
     useEffect(() => {
         fetch(
             `https://dry-ocean-34765.herokuapp.com/orders?email=${loggedInUser.email}`
@@ -20,6 +21,7 @@ const EnrolledServices = () => {
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, [loggedInUser.email]);
+
     return (
         <Container fluid>
             <Row>
@@ -38,7 +40,7 @@ const EnrolledServices = () => {
                             </Link>
                         </p>
                         <p>
-                            <Link to="/customer/enrolledServices">
+                            <Link to="/customer/enrolled-services">
                                 <FontAwesomeIcon icon={faShoppingBag} />{' '}
                                 Enrolled Services
                             </Link>
@@ -103,5 +105,3 @@ const EnrolledServices = () => {
         </Container>
     );
 };
-
-export default EnrolledServices;
