@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../../../App';
 
 export const Headbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
+    const { pathname, hash } = useLocation();
 
     const handleLogOut = () => {
         localStorage.removeItem('user');
@@ -13,7 +14,7 @@ export const Headbar = () => {
     };
 
     return (
-        <Navbar expand="lg">
+        <Navbar expand="lg" id="headbar">
             <Navbar.Brand href="">
                 <img
                     onClick={() => history.push('/')}
@@ -29,18 +30,27 @@ export const Headbar = () => {
                         href=""
                         onClick={() => history.push('/home')}
                         className="nav-link mr-4"
+                        active={pathname === '/' && hash === ''}
                     >
                         Home
                     </Nav.Link>
-                    <Nav.Link href="#ourWorks" className="nav-link mr-4">
+                    <Nav.Link
+                        href="#ourWorks"
+                        className="nav-link mr-4"
+                        active={pathname === '/' && hash === '#ourWorks'}
+                    >
                         Our Portfolio
                     </Nav.Link>
-                    <Nav.Link href="#contactUs" className="nav-link mr-4">
+                    <Nav.Link
+                        href="#contactUs"
+                        className="nav-link mr-4"
+                        active={pathname === '/' && hash === '#contactUs'}
+                    >
                         Contact Us
                     </Nav.Link>
                     <Nav.Link
                         href=""
-                        onClick={() => history.push('/admin/serviceList')}
+                        onClick={() => history.push('/admin/service-list')}
                         className="nav-link mr-4"
                     >
                         Admin Panel

@@ -1,16 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faPlus,
-    faShoppingBag,
-    faUserPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import { UserContext } from '../../../App';
+import { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
+import { SidebarLayout } from '../../others';
 
 export const ServedList = () => {
-    const [loggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
 
     const statuses = ['Pending', 'OnGoing', 'Done'];
@@ -40,132 +32,86 @@ export const ServedList = () => {
     };
 
     return (
-        <Container fluid>
-            <Row>
-                <Col md={3}>
-                    <Link to="/home">
-                        <img
-                            style={{ height: '70px', margin: '20px 0 40px 0' }}
-                            src="/images/logos/logo.png"
-                            alt=""
-                        />
-                    </Link>
-                    <div className="mt-2 ml-3">
-                        <p>
-                            <Link to="/admin/service-list">
-                                <FontAwesomeIcon icon={faShoppingBag} /> Service
-                                List
-                            </Link>
-                        </p>
-                        <p>
-                            <Link to="/admin/add-service">
-                                <FontAwesomeIcon icon={faPlus} /> Add Service
-                            </Link>
-                        </p>
-                        <p>
-                            <Link to="/admin/make-admin">
-                                <FontAwesomeIcon icon={faUserPlus} /> Make Admin
-                            </Link>
-                        </p>
-                    </div>
-                </Col>
-                <Col md={9}>
-                    <Row className="my-4 pb-1">
-                        <Col>
-                            <h2>Services</h2>
-                        </Col>
-                        <Col>
-                            <h5 className="text-right">{loggedInUser.name}</h5>
-                        </Col>
-                    </Row>
-                    <Container
-                        className="mt-2 py-3"
-                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}
-                    >
-                        <div
-                            className="bg-white p-4"
-                            style={{ borderRadius: '10px' }}
-                        >
-                            <p
-                                className="text-center text-success"
-                                style={{ fontSize: '1.5em' }}
-                                id="update"
-                            ></p>
-                            {orders.length === 0 && (
-                                <h4 className="my-4 text-center text-danger">
-                                    Loading Orders....
-                                </h4>
-                            )}
+        <SidebarLayout navFor="admin">
+            <Container
+                className="mt-2 py-3"
+                style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+            >
+                <div className="bg-white p-4" style={{ borderRadius: '10px' }}>
+                    <p
+                        className="text-center text-success"
+                        style={{ fontSize: '1.5em' }}
+                        id="update"
+                    ></p>
+                    {orders.length === 0 && (
+                        <h4 className="my-4 text-center text-danger">
+                            Loading Orders....
+                        </h4>
+                    )}
 
-                            <table className="table bg-white mt-4 text-center table-hover rounded table-borderless">
-                                <thead className="bg-light">
-                                    <tr>
-                                        <th
-                                            style={{
-                                                borderRadius: '10px 0 0 10px',
-                                            }}
+                    <table className="table bg-white mt-4 text-center table-hover rounded table-borderless">
+                        <thead className="bg-light">
+                            <tr>
+                                <th
+                                    style={{
+                                        borderRadius: '10px 0 0 10px',
+                                    }}
+                                >
+                                    Name
+                                </th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Details</th>
+                                <th
+                                    style={{
+                                        borderRadius: '0 10px 10px 0',
+                                    }}
+                                >
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map((order) => (
+                                <tr key={order._id}>
+                                    <td>{order.name}</td>
+                                    <td style={{ width: '200px' }}>
+                                        {order.email}
+                                    </td>
+                                    <td>{order.serviceName}</td>
+                                    <td
+                                        className="text-left"
+                                        style={{ width: '350px' }}
+                                    >
+                                        {order.details}
+                                    </td>
+                                    <td style={{ width: '150px' }}>
+                                        <select
+                                            className="form-control"
+                                            onChange={(e) =>
+                                                statusChange(order._id, e)
+                                            }
+                                            name="status"
                                         >
-                                            Name
-                                        </th>
-                                        <th>Email</th>
-                                        <th>Service</th>
-                                        <th>Details</th>
-                                        <th
-                                            style={{
-                                                borderRadius: '0 10px 10px 0',
-                                            }}
-                                        >
-                                            Status
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {orders.map((order) => (
-                                        <tr key={order._id}>
-                                            <td>{order.name}</td>
-                                            <td style={{ width: '200px' }}>
-                                                {order.email}
-                                            </td>
-                                            <td>{order.serviceName}</td>
-                                            <td
-                                                className="text-left"
-                                                style={{ width: '350px' }}
-                                            >
-                                                {order.details}
-                                            </td>
-                                            <td style={{ width: '150px' }}>
-                                                <select
-                                                    className="form-control"
-                                                    onChange={(e) =>
-                                                        statusChange(
-                                                            order._id,
-                                                            e
-                                                        )
+                                            {statuses.map((option) => (
+                                                <option
+                                                    key={option}
+                                                    value={option}
+                                                    selected={
+                                                        option === order.status
                                                     }
-                                                    name="status"
                                                 >
-                                                    {statuses.map((option) => (
-                                                        <option
-                                                            key={option}
-                                                            value={option}
-                                                            selected={
-                                                                option ===
-                                                                order.status
-                                                            }
-                                                        >
-                                                            {option}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </Container>
-                </Col>
-            </Row>
-        </Container>
+                                                    {option}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </Container>
+        </SidebarLayout>
     );
 };

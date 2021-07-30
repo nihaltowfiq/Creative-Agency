@@ -1,13 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faCommentDots,
-    faShoppingBag,
-    faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 import { UserContext } from '../../../App';
+import { SidebarLayout } from '../../others';
 
 export const Order = () => {
     const [servicesData, setServicesData] = useState([]);
@@ -61,135 +56,96 @@ export const Order = () => {
     };
 
     return (
-        <Container fluid>
-            <Row>
-                <Col md={3}>
-                    <Link to="/home">
-                        <img
-                            style={{ height: '70px', margin: '20px 0 40px 0' }}
-                            src="/images/logos/logo.png"
-                            alt=""
+        <SidebarLayout navFor="customer">
+            <Container
+                className="mt-2 py-3"
+                style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+            >
+                <Form
+                    id="orderForm"
+                    onSubmit={handleSubmit}
+                    className="p-5 mr-5"
+                >
+                    <Form.Group>
+                        <Form.Control
+                            onBlur={handleBlur}
+                            name="name"
+                            size="lg"
+                            type="text"
+                            defaultValue={loggedInUser.name}
+                            placeholder="Your Name / Company's Name"
+                            required
                         />
-                    </Link>
-                    <div className="mt-2 ml-3">
-                        <p>
-                            <Link to="/order">
-                                <FontAwesomeIcon icon={faShoppingCart} /> Order
-                            </Link>
-                        </p>
-                        <p>
-                            <Link to="/customer/enrolled-services">
-                                <FontAwesomeIcon icon={faShoppingBag} />{' '}
-                                Enrolled Services
-                            </Link>
-                        </p>
-                        <p>
-                            <Link to="/customer/review">
-                                <FontAwesomeIcon icon={faCommentDots} /> Review
-                            </Link>
-                        </p>
-                    </div>
-                </Col>
-                <Col md={9}>
-                    <Row className="my-4 pb-3">
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Control
+                            onBlur={handleBlur}
+                            name="email"
+                            size="lg"
+                            type="email"
+                            defaultValue={loggedInUser.email}
+                            placeholder="Your Email Address"
+                            readOnly
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Control
+                            onBlur={handleBlur}
+                            name="serviceName"
+                            size="lg"
+                            type="text"
+                            defaultValue={service.title}
+                            placeholder="Service"
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Control
+                            onBlur={handleBlur}
+                            name="details"
+                            type="text"
+                            size="lg"
+                            as="textarea"
+                            rows="3"
+                            placeholder="Project Details"
+                            required
+                        />
+                    </Form.Group>
+
+                    <Row>
                         <Col>
-                            <h2>Order</h2>
+                            <Form.Group>
+                                <Form.Control
+                                    onBlur={handleBlur}
+                                    name="price"
+                                    size="lg"
+                                    type="number"
+                                    placeholder="Price"
+                                    required
+                                />
+                            </Form.Group>
                         </Col>
                         <Col>
-                            <h5 className="text-right">{loggedInUser.name}</h5>
+                            <Form.Group>
+                                <Form.File
+                                    onChange={handleFileChange}
+                                    className="position-relative form-control-lg"
+                                    required
+                                    name="file"
+                                    feedbackTooltip
+                                />
+                            </Form.Group>
                         </Col>
                     </Row>
-                    <Container
-                        className="mt-2 py-3"
-                        style={{ backgroundColor: '#F4F7FC', height: '600px' }}
-                    >
-                        <Form
-                            id="orderForm"
-                            onSubmit={handleSubmit}
-                            className="p-5 mr-5"
-                        >
-                            <Form.Group>
-                                <Form.Control
-                                    onBlur={handleBlur}
-                                    name="name"
-                                    size="lg"
-                                    type="text"
-                                    defaultValue={loggedInUser.name}
-                                    placeholder="Your Name / Company's Name"
-                                    required
-                                />
-                            </Form.Group>
 
-                            <Form.Group>
-                                <Form.Control
-                                    onBlur={handleBlur}
-                                    name="email"
-                                    size="lg"
-                                    type="email"
-                                    defaultValue={loggedInUser.email}
-                                    placeholder="Your Email Address"
-                                    readOnly
-                                />
-                            </Form.Group>
-
-                            <Form.Group>
-                                <Form.Control
-                                    onBlur={handleBlur}
-                                    name="serviceName"
-                                    size="lg"
-                                    type="text"
-                                    defaultValue={service.title}
-                                    placeholder="Service"
-                                    required
-                                />
-                            </Form.Group>
-
-                            <Form.Group>
-                                <Form.Control
-                                    onBlur={handleBlur}
-                                    name="details"
-                                    type="text"
-                                    size="lg"
-                                    as="textarea"
-                                    rows="3"
-                                    placeholder="Project Details"
-                                    required
-                                />
-                            </Form.Group>
-
-                            <Row>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Control
-                                            onBlur={handleBlur}
-                                            name="price"
-                                            size="lg"
-                                            type="number"
-                                            placeholder="Price"
-                                            required
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.File
-                                            onChange={handleFileChange}
-                                            className="position-relative form-control-lg"
-                                            required
-                                            name="file"
-                                            feedbackTooltip
-                                        />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-
-                            <Button variant="dark" type="submit" size="lg">
-                                Order
-                            </Button>
-                        </Form>
-                    </Container>
-                </Col>
-            </Row>
-        </Container>
+                    <Button variant="dark" type="submit" size="lg">
+                        Order
+                    </Button>
+                </Form>
+            </Container>
+        </SidebarLayout>
     );
 };
