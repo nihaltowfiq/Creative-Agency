@@ -10,7 +10,7 @@ export const Feedbacks = () => {
             .then((data) => setFeedbackData(data));
     }, []);
     return (
-        <Container className="pt-5 mt-5">
+        <Container className="pt-5 mt-5" style={{ minHeight: '100vh' }}>
             <h1 className="text-center">
                 Clients <span style={{ color: '#7AB259' }}>Feedbacks</span>
             </h1>

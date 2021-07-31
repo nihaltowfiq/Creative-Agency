@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import './EnrolledServices.css';
@@ -14,7 +15,7 @@ export const EnrolledServices = () => {
         )
             .then((res) => res.json())
             .then((data) => setOrders(data));
-    }, [loggedInUser.email]);
+    }, []);
 
     return (
         <SidebarLayout navFor="customer">

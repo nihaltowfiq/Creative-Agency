@@ -1,19 +1,19 @@
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 export const Footer = () => {
     return (
-        <div style={{ backgroundColor: '#FBD062', height: '580px' }}>
+        <div style={{ backgroundColor: '#FBD062', height: '100vh' }}>
             <Container>
-                <div className="row d-flex justify-content-center p-5 mt-5">
-                    <div className="col-md-4 col-12 pt-5">
+                <Row className="d-flex justify-content-center py-5">
+                    <Col md={5} sm={12} className="pt-5">
                         <h1>Let Us Handle Your Project, Professionally!</h1>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing
                             elit. Consectetur, laboriosam consequatur recusandae
                             ipsa cupiditate id!
                         </p>
-                    </div>
-                    <div id="contactUs" className="col-md-8 col-12 pt-5">
+                    </Col>
+                    <Col md={7} sm={12} id="contactUs" className="py-5">
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Control
@@ -42,9 +42,9 @@ export const Footer = () => {
                                 Send
                             </Button>
                         </Form>
-                    </div>
-                </div>
-                <p className="text-center mt-3 pt-5 ">
+                    </Col>
+                </Row>
+                <p className="text-center mt-5 pt-4 mb-0">
                     copyrights Nihal Towfiq {new Date().getFullYear()}
                 </p>
             </Container>

@@ -3,7 +3,7 @@ import { Carousel, Container } from 'react-bootstrap';
 export const OurWorks = () => {
     return (
         <div
-            style={{ background: '#111430' }}
+            style={{ background: '#111430', minHeight: '105vh' }}
             className="text-center pb-5 mb-5"
         >
             <h1 id="ourWorks" className="text-white pt-5">

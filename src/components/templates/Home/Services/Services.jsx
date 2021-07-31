@@ -11,7 +11,7 @@ export const Services = () => {
     }, []);
 
     return (
-        <Container className="text-center mt-5">
+        <Container className="text-center mt-5" style={{ minHeight: '100vh' }}>
             <h1 id="services" className="my-5 pt-4 pb-5">
                 Provide Awesome{' '}
                 <span style={{ color: '#7AB259' }}>Services</span>

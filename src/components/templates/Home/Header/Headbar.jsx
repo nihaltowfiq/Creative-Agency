@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import { UserContext } from '../../../../App';
 
 export const Headbar = () => {
@@ -14,7 +15,7 @@ export const Headbar = () => {
     };
 
     return (
-        <Navbar expand="lg" id="headbar">
+        <Navigation expand="lg" id="headbar">
             <Navbar.Brand href="">
                 <img
                     onClick={() => history.push('/')}
@@ -69,6 +70,12 @@ export const Headbar = () => {
                     </Button>
                 )}
             </Navbar.Collapse>
-        </Navbar>
+        </Navigation>
     );
 };
+
+const Navigation = styled(Navbar)`
+    .active {
+        border-bottom: 3px solid #7ab259;
+    }
+`;
