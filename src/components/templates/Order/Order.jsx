@@ -1,25 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import { SidebarLayout } from '../../others';
 
-export const Order = () => {
-    const [servicesData, setServicesData] = useState([]);
+export const Order = ({ data }) => {
     const [orderInfo, setOrderInfo] = useState({});
     const [orderFile, setOrderFile] = useState(null);
+    const [validated, setValidated] = useState(false);
     const [loggedInUser] = useContext(UserContext);
 
     const { id } = useParams();
 
-    useEffect(() => {
-        fetch('https://dry-ocean-34765.herokuapp.com/services')
-            .then((res) => res.json())
-            .then((data) => setServicesData(data));
-    }, []);
-    const service = servicesData.find((service) => service._id === id) || {};
+    const service = data.find(({ _id }) => _id === id) || {};
 
-    const handleBlur = (e) => {
+    const handleChange = (e) => {
         const newOrderInfo = { ...orderInfo };
         newOrderInfo[e.target.name] = e.target.value;
         newOrderInfo.status = 'Pending';
@@ -31,28 +26,39 @@ export const Order = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        const form = e.currentTarget;
 
-        const formData = new FormData();
-        formData.append('file', orderFile);
-        formData.append('name', orderInfo.name || loggedInUser.name);
-        formData.append('email', orderInfo.email || loggedInUser.email);
-        formData.append('serviceName', service.title || orderInfo.serviceName);
-        formData.append('details', orderInfo.details);
-        formData.append('price', orderInfo.price);
-        formData.append('icon', service.image.img);
-        formData.append('status', orderInfo.status);
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+            setValidated(true);
+        } else {
+            setValidated(false);
 
-        fetch('https://dry-ocean-34765.herokuapp.com/addOrder', {
-            method: 'POST',
-            body: formData,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data === false) {
-                    document.getElementById('orderForm').innerHTML =
-                        '<h3 class="text-center text-success mt-5"><b>Orderd Successfully</b></h3>';
-                }
-            });
+            const formData = new FormData();
+            formData.append('file', orderFile);
+            formData.append('name', orderInfo.name || loggedInUser.name);
+            formData.append('email', orderInfo.email || loggedInUser.email);
+            formData.append(
+                'serviceName',
+                service.title || orderInfo.serviceName
+            );
+            formData.append('details', orderInfo.details);
+            formData.append('price', orderInfo.price);
+            formData.append('icon', service.image.img);
+            formData.append('status', orderInfo.status);
+
+            fetch('https://dry-ocean-34765.herokuapp.com/addOrder', {
+                method: 'POST',
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data === false) {
+                        document.getElementById('orderForm').innerHTML =
+                            '<h3 class="text-center text-success mt-5"><b>Ordered Successfully</b></h3>';
+                    }
+                });
+        }
     };
 
     return (
@@ -63,16 +69,18 @@ export const Order = () => {
             >
                 <Form
                     id="orderForm"
-                    onSubmit={handleSubmit}
                     className="p-5 mr-5"
+                    noValidate
+                    validated={validated}
+                    onSubmit={handleSubmit}
                 >
                     <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
                             name="name"
                             size="lg"
                             type="text"
                             defaultValue={loggedInUser.name}
+                            onChange={handleChange}
                             placeholder="Your Name / Company's Name"
                             required
                         />
@@ -80,7 +88,7 @@ export const Order = () => {
 
                     <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
+                            onChange={handleChange}
                             name="email"
                             size="lg"
                             type="email"
@@ -92,11 +100,11 @@ export const Order = () => {
 
                     <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
+                            onChange={handleChange}
                             name="serviceName"
                             size="lg"
                             type="text"
-                            defaultValue={service.title}
+                            defaultValue={service?.title}
                             placeholder="Service"
                             required
                         />
@@ -104,7 +112,7 @@ export const Order = () => {
 
                     <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
+                            onChange={handleChange}
                             name="details"
                             type="text"
                             size="lg"
@@ -119,7 +127,7 @@ export const Order = () => {
                         <Col>
                             <Form.Group>
                                 <Form.Control
-                                    onBlur={handleBlur}
+                                    onChange={handleChange}
                                     name="price"
                                     size="lg"
                                     type="number"

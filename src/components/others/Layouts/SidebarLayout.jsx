@@ -19,8 +19,6 @@ export const SidebarLayout = ({ children, navFor }) => {
 
     const selectedItem = items.find(({ slug }) => pathname === slug);
 
-    console.log(items);
-
     return (
         <Container fluid>
             <Row>

@@ -13,7 +13,7 @@ export const adminItems = [
 ];
 
 export const customerItems = [
-    { title: 'Order', icon: faShoppingCart, slug: '/order' },
+    { title: 'Order', icon: faShoppingCart, slug: '/customer/order' },
     {
         title: 'Enrolled Services',
         icon: faShoppingBag,

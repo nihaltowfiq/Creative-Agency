@@ -4,8 +4,8 @@ export const Footer = () => {
     return (
         <div style={{ backgroundColor: '#FBD062', height: '100vh' }}>
             <Container>
-                <Row className="d-flex justify-content-center py-5">
-                    <Col md={5} sm={12} className="pt-5">
+                <Row className="justify-content-center py-5">
+                    <Col md={5} sm={12} className="py-5">
                         <h1>Let Us Handle Your Project, Professionally!</h1>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing

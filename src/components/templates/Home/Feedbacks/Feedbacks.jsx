@@ -4,11 +4,13 @@ import { FeedbackDetail } from './FeedbackDetail';
 
 export const Feedbacks = () => {
     const [feedbackData, setFeedbackData] = useState([]);
+
     useEffect(() => {
         fetch('https://dry-ocean-34765.herokuapp.com/allReviews')
             .then((res) => res.json())
             .then((data) => setFeedbackData(data));
     }, []);
+
     return (
         <Container className="pt-5 mt-5" style={{ minHeight: '100vh' }}>
             <h1 className="text-center">

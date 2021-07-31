@@ -35,7 +35,7 @@ function App() {
                     <Route exact path="/" component={Home} />
                     <Redirect from="/home" to="/" />
                     <Route path="/login" component={Login} />
-                    <Route path="/order" component={Order} />
+                    <Route exact path="/customer/order" component={Order} />
                     <PrivateRoute path="/customer/order/:id">
                         <Order />
                     </PrivateRoute>
