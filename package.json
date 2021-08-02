@@ -1,7 +1,10 @@
 {
-    "name": "client",
+    "name": "creative-agency-client",
     "version": "0.1.0",
-    "author": "Nihal Towfiq",
+    "author": {
+        "name": "Nihal Towfiq",
+        "email": "nihal.towfiq@gmail.com"
+    },
     "private": true,
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
