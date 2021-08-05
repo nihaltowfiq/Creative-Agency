@@ -1,35 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { SidebarLayout } from '../../others';
 
-export const ServedList = () => {
-    const [orders, setOrders] = useState([]);
-
+export const ServedList = ({ data, updateStatus }) => {
     const statuses = ['Pending', 'OnGoing', 'Done'];
-
-    useEffect(() => {
-        fetch('https://dry-ocean-34765.herokuapp.com/allOrders')
-            .then((res) => res.json())
-            .then((data) => setOrders(data));
-    }, []);
-
-    const statusChange = (id, e) => {
-        const updatedOrder = { status: e.target.value };
-        document.getElementById('update').innerText = 'Updating Changes';
-
-        fetch(`https://dry-ocean-34765.herokuapp.com/update/${id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedOrder),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data) {
-                    document.getElementById('update').innerText =
-                        'Changes Updated Successfully!';
-                }
-            });
-    };
 
     return (
         <SidebarLayout navFor="admin">
@@ -43,7 +16,7 @@ export const ServedList = () => {
                         style={{ fontSize: '1.5em' }}
                         id="update"
                     ></p>
-                    {orders.length === 0 && (
+                    {data.length === 0 && (
                         <h4 className="my-4 text-center text-danger">
                             Loading Orders....
                         </h4>
@@ -72,7 +45,7 @@ export const ServedList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map((order) => (
+                            {data.map((order) => (
                                 <tr key={order._id}>
                                     <td>{order.name}</td>
                                     <td style={{ width: '200px' }}>
@@ -89,7 +62,7 @@ export const ServedList = () => {
                                         <select
                                             className="form-control"
                                             onChange={(e) =>
-                                                statusChange(order._id, e)
+                                                updateStatus(e, order._id)
                                             }
                                             name="status"
                                         >
