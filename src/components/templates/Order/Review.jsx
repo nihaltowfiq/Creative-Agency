@@ -1,33 +1,7 @@
-import { useState, useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { UserContext } from '../../../App';
 import { SidebarLayout } from '../../others';
 
-export const Review = () => {
-    const [reviewInfo, setReviewInfo] = useState({});
-    const [loggedInUser] = useContext(UserContext);
-
-    const handleBlur = (e) => {
-        const newReviewInfo = { ...reviewInfo, img: loggedInUser.img };
-        newReviewInfo[e.target.name] = e.target.value;
-        setReviewInfo(newReviewInfo);
-    };
-    const handleSubmit = (e) => {
-        fetch('https://dry-ocean-34765.herokuapp.com/addReview', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(reviewInfo),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data) {
-                    document.getElementById('reviewForm').innerHTML =
-                        '<h3 class="text-center text-success mt-5"><b>Review Submitted Successfully</b></h3>';
-                }
-            });
-        e.preventDefault();
-    };
-
+export const Review = ({ changeHandler, submitHandler }) => {
     return (
         <SidebarLayout navFor="customer">
             <Container
@@ -36,39 +10,40 @@ export const Review = () => {
             >
                 <Form
                     id="reviewForm"
-                    onSubmit={handleSubmit}
                     className="p-5 mr-5"
+                    autocomplete="off"
+                    onSubmit={submitHandler}
                 >
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
                             name="name"
                             size="lg"
                             type="text"
+                            onChange={changeHandler}
                             placeholder="Your Name"
                             required
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicName">
+                    <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
                             name="companyName"
                             size="lg"
                             type="text"
+                            onChange={changeHandler}
                             placeholder="Designation, Company's Name"
                             required
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Group>
                         <Form.Control
-                            onBlur={handleBlur}
                             name="description"
                             type="text"
                             size="lg"
                             as="textarea"
                             rows="3"
+                            onChange={changeHandler}
                             placeholder="Description"
                             required
                         />

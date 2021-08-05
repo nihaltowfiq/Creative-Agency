@@ -9,6 +9,5 @@ This project live link is : https://creative-agency-basic.web.app/
 -   React Hooks
 -   Context-API
 -   Firebase
--   SCSS
 -   Bootstrap
 -   Styled-Components
