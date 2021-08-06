@@ -1,17 +1,7 @@
 .header-wrapper {
-    height: 800px;
     width: 100%;
-    position: relative;
-}
-.header-wrapper::before {
-    content: ' ';
-    background-image: url('../../../../assets/images/header-bg.png');
-    position: absolute;
-    height: 650px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -2;
-    background-position: top left;
-    background-size: cover;
+    min-height: 100vh;
+    background-color: #fbd062;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }

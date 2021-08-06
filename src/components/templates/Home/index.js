@@ -3,3 +3,4 @@ export * from './Services';
 export * from './OurWorks';
 export * from './Feedbacks';
 export * from './Footer';
+export * from './Icons';

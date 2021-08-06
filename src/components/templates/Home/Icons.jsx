@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap';
 
-export const HeaderIcons = () => {
+export const Icons = () => {
     const iconPaths = [
         '/images/logos/google.png',
         '/images/logos/airbnb.png',
@@ -8,8 +8,9 @@ export const HeaderIcons = () => {
         '/images/logos/slack.png',
         '/images/logos/netflix.png',
     ];
+
     return (
-        <Container className="pb-5 d-flex justify-content-around flex-wrap">
+        <Container className="pb-3 d-flex justify-content-around flex-wrap">
             {iconPaths.map((icon) => (
                 <img
                     key={icon}

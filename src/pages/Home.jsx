@@ -3,6 +3,7 @@ import {
     Feedbacks,
     Footer,
     Header,
+    Icons,
     OurWorks,
     Services,
 } from '../components/templates';
@@ -10,6 +11,7 @@ import {
 export const Home = () => (
     <Fragment>
         <Header />
+        <Icons />
         <Services />
         <OurWorks />
         <Feedbacks />
