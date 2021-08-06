@@ -2,17 +2,12 @@ import { useContext } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { UserContext } from '../../../../App';
+import { AuthCtx } from '../../../../store';
 
 export const Headbar = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const { loggedInUser, onLogout } = useContext(AuthCtx);
     const history = useHistory();
     const { pathname, hash } = useLocation();
-
-    const handleLogOut = () => {
-        localStorage.removeItem('user');
-        setLoggedInUser({});
-    };
 
     return (
         <Navigation expand="lg" id="headbar">
@@ -65,7 +60,7 @@ export const Headbar = () => {
                         Login
                     </Button>
                 ) : (
-                    <Button onClick={handleLogOut} variant="dark">
+                    <Button onClick={onLogout} variant="dark">
                         Logout, {loggedInUser.name}
                     </Button>
                 )}

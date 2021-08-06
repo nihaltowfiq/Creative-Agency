@@ -4,11 +4,11 @@ import { useHistory, useLocation } from 'react-router-dom';
 import 'firebase/auth';
 import * as firebase from 'firebase/app';
 import { Login as LoginComponent } from '../components/templates';
-import { UserContext } from '../App';
 import { firebaseConfig } from '../libs/api';
+import { AuthCtx } from '../store';
 
 export const Login = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const { onLogin } = useContext(AuthCtx);
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: '/' } };
@@ -21,20 +21,14 @@ export const Login = () => {
         firebase
             .auth()
             .signInWithPopup(provider)
-            .then((result) => {
-                const { displayName: name, email, photoURL: img } = result.user;
-                setLoggedInUser({ name, email, img });
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({ name, email, img })
-                );
+            .then(({ user }) => {
+                const { displayName: name, email, photoURL: img } = user;
+                onLogin({ name, email, img });
                 history.replace(from);
             })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
-            });
+            .catch(({ message }) => console.log(message));
     };
+
     return (
         <Fragment>
             <LoginComponent loginHandler={handleGoogleSignIn} />

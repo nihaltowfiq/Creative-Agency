@@ -1,14 +1,14 @@
 import { useContext, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { UserContext } from '../../../App';
+import { AuthCtx } from '../../../store';
 import { SidebarLayout } from '../../others';
 
 export const Order = ({ data }) => {
     const [orderInfo, setOrderInfo] = useState({});
     const [orderFile, setOrderFile] = useState(null);
     const [validated, setValidated] = useState(false);
-    const [loggedInUser] = useContext(UserContext);
+    const { loggedInUser } = useContext(AuthCtx);
 
     const { id } = useParams();
 

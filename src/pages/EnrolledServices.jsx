@@ -1,10 +1,10 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
-import { UserContext } from '../App';
 import { EnrolledServices as EnrolledServicesCompoment } from '../components/templates';
+import { AuthCtx } from '../store';
 
 export const EnrolledServices = () => {
     const [orders, setOrders] = useState([]);
-    const [loggedInUser] = useContext(UserContext);
+    const { loggedInUser } = useContext(AuthCtx);
 
     useEffect(() => {
         fetch(

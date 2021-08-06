@@ -7,10 +7,16 @@ export const ServedList = ({ data, updateStatus }) => {
     return (
         <SidebarLayout navFor="admin">
             <Container
-                className="mt-2 py-3"
-                style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+                className="py-3"
+                style={{
+                    backgroundColor: '#F4F7FC',
+                    minHeight: 'calc(100vh - 90px)',
+                }}
             >
-                <div className="bg-white p-4" style={{ borderRadius: '10px' }}>
+                <div
+                    className="bg-white mt-2 p-4"
+                    style={{ borderRadius: '10px' }}
+                >
                     <p
                         className="text-center text-success"
                         style={{ fontSize: '1.5em' }}

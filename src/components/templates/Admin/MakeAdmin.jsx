@@ -6,7 +6,10 @@ export const MakeAdmin = ({ changeHandler, submitHandler }) => {
         <SidebarLayout navFor="admin">
             <Container
                 className="mt-2 py-3"
-                style={{ backgroundColor: '#F4F7FC', height: '600px' }}
+                style={{
+                    backgroundColor: '#F4F7FC',
+                    minHeight: 'calc(100vh - 90px)',
+                }}
             >
                 <Form
                     id="makeAdminForm"

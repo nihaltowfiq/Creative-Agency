@@ -3,11 +3,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { UserContext } from '../../../App';
 import { adminItems, customerItems } from '../../../utils/sidebar.items';
+import { AuthCtx } from '../../../store';
 
 export const SidebarLayout = ({ children, navFor }) => {
-    const [loggedInUser] = useContext(UserContext);
+    const { loggedInUser } = useContext(AuthCtx);
     const { pathname } = useLocation();
 
     let items = [];

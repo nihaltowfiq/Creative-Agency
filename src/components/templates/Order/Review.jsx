@@ -11,7 +11,7 @@ export const Review = ({ changeHandler, submitHandler }) => {
                 <Form
                     id="reviewForm"
                     className="p-5 mr-5"
-                    autocomplete="off"
+                    autoComplete="off"
                     onSubmit={submitHandler}
                 >
                     <Form.Group>

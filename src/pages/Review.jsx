@@ -1,10 +1,10 @@
 import { Fragment, useContext, useState } from 'react';
-import { UserContext } from '../App';
 import { Review as ReviewCompoment } from '../components/templates';
+import { AuthCtx } from '../store';
 
 export const Review = () => {
     const [reviewInfo, setReviewInfo] = useState({});
-    const [loggedInUser] = useContext(UserContext);
+    const { loggedInUser } = useContext(AuthCtx);
 
     const handleChange = (e) => {
         const newReviewInfo = { ...reviewInfo, img: loggedInUser.img };
