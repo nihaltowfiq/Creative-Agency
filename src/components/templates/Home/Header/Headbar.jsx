@@ -1,23 +1,17 @@
-import { useContext } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { AuthCtx } from '../../../../store';
+import { useAuthCtx } from '../../../../store';
 
 export const Headbar = () => {
-    const { loggedInUser, onLogout } = useContext(AuthCtx);
+    const { loggedInUser, onLogout } = useAuthCtx();
     const history = useHistory();
     const { pathname, hash } = useLocation();
 
     return (
         <Navigation expand="lg" id="headbar">
             <Navbar.Brand href="">
-                <img
-                    onClick={() => history.push('/')}
-                    style={{ height: '40px' }}
-                    src="/images/logos/logo.png"
-                    alt=""
-                />
+                <img onClick={() => history.push('/')} style={{ height: '40px' }} src="/images/logos/logo.png" alt="" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -44,19 +38,12 @@ export const Headbar = () => {
                     >
                         Contact Us
                     </Nav.Link>
-                    <Nav.Link
-                        href=""
-                        onClick={() => history.push('/admin/service-list')}
-                        className="nav-link mr-4"
-                    >
+                    <Nav.Link href="" onClick={() => history.push('/admin/service-list')} className="nav-link mr-4">
                         Admin Panel
                     </Nav.Link>
                 </Nav>
                 {!loggedInUser.email ? (
-                    <Button
-                        onClick={() => history.push('/login')}
-                        variant="dark"
-                    >
+                    <Button onClick={() => history.push('/login')} variant="dark">
                         Login
                     </Button>
                 ) : (

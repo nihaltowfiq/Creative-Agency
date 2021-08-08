@@ -1,13 +1,12 @@
-import { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { adminItems, customerItems } from '../../../utils/sidebar.items';
-import { AuthCtx } from '../../../store';
+import { useAuthCtx } from '../../../store';
 
 export const SidebarLayout = ({ children, navFor }) => {
-    const { loggedInUser } = useContext(AuthCtx);
+    const { loggedInUser } = useAuthCtx();
     const { pathname } = useLocation();
 
     let items = [];
@@ -44,9 +43,7 @@ export const SidebarLayout = ({ children, navFor }) => {
                             <h2 className="mb-0">{selectedItem?.title}</h2>
                         </Col>
                         <Col>
-                            <h5 className="mb-0 text-right">
-                                {loggedInUser.name}
-                            </h5>
+                            <h5 className="mb-0 text-right">{loggedInUser.name}</h5>
                         </Col>
                     </Row>
                     {children}

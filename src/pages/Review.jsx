@@ -1,10 +1,10 @@
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Review as ReviewCompoment } from '../components/templates';
-import { AuthCtx } from '../store';
+import { useAuthCtx } from '../store';
 
 export const Review = () => {
     const [reviewInfo, setReviewInfo] = useState({});
-    const { loggedInUser } = useContext(AuthCtx);
+    const { loggedInUser } = useAuthCtx();
 
     const handleChange = (e) => {
         const newReviewInfo = { ...reviewInfo, img: loggedInUser.img };
@@ -31,10 +31,7 @@ export const Review = () => {
 
     return (
         <Fragment>
-            <ReviewCompoment
-                changeHandler={handleChange}
-                submitHandler={handleSubmit}
-            />
+            <ReviewCompoment changeHandler={handleChange} submitHandler={handleSubmit} />
         </Fragment>
     );
 };

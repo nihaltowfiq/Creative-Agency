@@ -1,14 +1,14 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { AuthCtx } from '../../../store';
+import { useAuthCtx } from '../../../store';
 import { SidebarLayout } from '../../others';
 
 export const Order = ({ data }) => {
     const [orderInfo, setOrderInfo] = useState({});
     const [orderFile, setOrderFile] = useState(null);
     const [validated, setValidated] = useState(false);
-    const { loggedInUser } = useContext(AuthCtx);
+    const { loggedInUser } = useAuthCtx();
 
     const { id } = useParams();
 
@@ -38,10 +38,7 @@ export const Order = ({ data }) => {
             formData.append('file', orderFile);
             formData.append('name', orderInfo.name || loggedInUser.name);
             formData.append('email', orderInfo.email || loggedInUser.email);
-            formData.append(
-                'serviceName',
-                service.title || orderInfo.serviceName
-            );
+            formData.append('serviceName', service.title || orderInfo.serviceName);
             formData.append('details', orderInfo.details);
             formData.append('price', orderInfo.price);
             formData.append('icon', service.image.img);
@@ -63,17 +60,8 @@ export const Order = ({ data }) => {
 
     return (
         <SidebarLayout navFor="customer">
-            <Container
-                className="mt-2 py-3"
-                style={{ backgroundColor: '#F4F7FC', height: '600px' }}
-            >
-                <Form
-                    id="orderForm"
-                    className="p-5 mr-5"
-                    noValidate
-                    validated={validated}
-                    onSubmit={handleSubmit}
-                >
+            <Container className="mt-2 py-3" style={{ backgroundColor: '#F4F7FC', height: '600px' }}>
+                <Form id="orderForm" className="p-5 mr-5" noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Control
                             name="name"

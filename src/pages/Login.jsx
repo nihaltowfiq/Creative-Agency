@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import 'firebase/auth';
 import * as firebase from 'firebase/app';
 import { Login as LoginComponent } from '../components/templates';
 import { firebaseConfig } from '../libs/api';
-import { AuthCtx } from '../store';
+import { useAuthCtx } from '../store';
 
 export const Login = () => {
-    const { onLogin } = useContext(AuthCtx);
+    const { onLogin } = useAuthCtx();
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: '/' } };

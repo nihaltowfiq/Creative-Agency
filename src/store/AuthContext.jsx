@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const initialValues = {
     loggedInUser: {},
@@ -6,9 +6,13 @@ const initialValues = {
     onLogout: () => {},
 };
 
-export const AuthCtx = createContext(initialValues);
+const AuthCtx = createContext(initialValues);
 
-export const AuthCtxProvider = ({ children }) => {
+export const useAuthCtx = () => {
+    return useContext(AuthCtx);
+};
+
+const AuthCtxProvider = ({ children }) => {
     const [loggedInUser, setLoggedInUser] = useState({});
 
     useEffect(() => {
@@ -25,9 +29,7 @@ export const AuthCtxProvider = ({ children }) => {
         setLoggedInUser({});
     };
 
-    return (
-        <AuthCtx.Provider value={{ loggedInUser, onLogin, onLogout }}>
-            {children}
-        </AuthCtx.Provider>
-    );
+    return <AuthCtx.Provider value={{ loggedInUser, onLogin, onLogout }}>{children}</AuthCtx.Provider>;
 };
+
+export default AuthCtxProvider;
